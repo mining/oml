@@ -1,2 +1,2 @@
-# dml
-Data Manipulation Language (DML)
+# Open Mining Language
+Language to preprocess Olap Cubes
