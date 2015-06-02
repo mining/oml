@@ -14,9 +14,11 @@ DataSet:
 
 OML:
 
-    ROW('new_collum1', SUM({@field1, @field2}))
-    ROW('new_collum2', SUBTRACT({@field1, @field2}))
-    ROW('geo', GEO_LOCATION("@address"))
+    ROW('new_collum1', OML.SUM({@field1, @field2}))
+    ROW('new_collum2', OML.SUB({@field1, @field2}))
+    ROW('geo', OML.GEO_LOCATION("@address"))
+    ROW('func', function() return 'abc' end)
+    {dict1=@field1*@field2, dict2=123}
 
 Return:
 
