@@ -8,42 +8,46 @@ from lupa import LuaRuntime
 
 lua = LuaRuntime(unpack_returned_tuples=True)
 
-OML = """ROW('new_collum1', SUM({@field1, @field2}))
-ROW('new_collum2', SUBTRACT({@field1, @field2}))
-ROW('geo', GEO_LOCATION("@address"))"""
+OML = """ROW('new_collum1', OML.SUM({@field1, @field2}))
+ROW('new_collum2', OML.SUB({@field1, @field2}))
+ROW('geo', OML.GEO_LOCATION("@address"))
+ROW('func', function() return 'abc' end)"""
 
 
-def GEO_LOCATION(address):
-    params = {
-        'address': address,
-        'sensor': 'false',
-    }
-    url = 'http://maps.google.com/maps/api/geocode/json?{}'.format(
-        urlencode(params))
-    req = requests.get(url)
-    result = json.loads(req.text)
-    try:
-        return result['results'][0]['geometry']['location']
-    except:
-        return {}
+class OMLBase(object):
 
+    def GEO_LOCATION(self, address):
+        params = {
+            'address': address,
+            'sensor': 'false',
+        }
+        url = 'http://maps.google.com/maps/api/geocode/json?{}'.format(
+            urlencode(params))
+        req = requests.get(url)
+        result = json.loads(req.text)
+        try:
+            return result['results'][0]['geometry']['location']
+        except:
+            return {}
 
-def SUM(items):
-    S = 0
-    for i in range(1, len(items) + 1):
-        S += items[i]
-    return S
+    def SUM(self, items):
+        S = 0
+        for i in range(1, len(items) + 1):
+            S += items[i]
+        return S
 
-
-def SUBTRACT(items):
-    S = 0
-    for i in range(1, len(items) + 1):
-        S -= items[i]
-    return S
+    def SUB(self, items):
+        S = 0
+        for i in range(1, len(items) + 1):
+            S -= items[i]
+        return S
 
 
 def ROW(name, func):
-    return {name: func}
+    try:
+        return {name: func()}
+    except:
+        return {name: func}
 
 
 items = [
@@ -54,6 +58,7 @@ items = [
     {"nome": "Carlos Leite", "field1": 50, "field2": 60,
      "address": "Sao Jose dos Campos, SP, Brasil"}
 ]
+
 for item in items:
     nitem = item.copy()
     for oml_line in OML.split("\n"):
@@ -62,7 +67,7 @@ for item in items:
 
         _run = lua.eval(
             """
-            function(ROW, SUM, SUBTRACT, GEO_LOCATION) return {} end
+            function(ROW, OML) return {} end
             """.format(render))
-        nitem.update(_run(ROW, SUM, SUBTRACT, GEO_LOCATION).items())
-    print nitem
+        nitem.update(_run(ROW, OMLBase()).items())
+    print(nitem)
