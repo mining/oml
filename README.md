@@ -28,4 +28,4 @@ Return:
 ## TODO
 
 [x] Run lua
-[] Run R (We spent a day doing a proof of concept and we can't use simply as Moon, let's start the project with Moon after we returned in R)
+[ ] Run R (We spent a day doing a proof of concept and we can't use simply as Moon, let's start the project with Moon after we returned in R)
