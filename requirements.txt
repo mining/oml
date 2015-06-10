@@ -1,4 +1,4 @@
--e git+https://github.com/avelino/mining#egg=mining
+mining
 lupa
 quik
 requests
