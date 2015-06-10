@@ -1,10 +1,23 @@
 language: python
 python:
   - "2.7"
+env:
+- LUA=libluajit-5.1-dev
+- LUA=libluajit-5.1-dev
+- LUA=libluajit-5.1-dev
+- LUA=libluajit-5.1-dev
+- LUA=libluajit-5.1-dev
+- LUA=lua5.2-dev
+- LUA=lua5.2-dev
+- LUA=lua5.2-dev
+- LUA=lua5.2-dev
+- LUA=lua5.2-dev
 cache:
   - pip
   - apt
-install: python setup.py install
+install:
+- sudo apt-get install $LUA
+- python setup.py install
 script: python tests.py
 notifications:
   irc: "irc.freenode.org#openmining"
