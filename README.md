@@ -1,4 +1,4 @@
-# Open Mining Language
+# Open Mining Language [![Build Status](https://travis-ci.org/mining/oml.svg?branch=master)](https://travis-ci.org/mining/oml)
 Language to preprocess Olap Cubes
 
 
