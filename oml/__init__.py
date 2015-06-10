@@ -1,8 +1,16 @@
 # -*- coding: utf-8 -*-
 from quik import Template
-from mining.utils import __from__
 
 from .base import OMLBase
+
+
+def __from__(path):
+    try:
+        _import = path.split('.')[-1]
+        _from = u".".join(path.split('.')[:-1])
+        return getattr(__import__(_from, fromlist=[_import]), _import)
+    except TypeError:
+        return object
 
 
 def ROW(name, func):
