@@ -5,11 +5,11 @@ env:
 - LUA=libluajit-5.1-dev
 - LUA=lua5.2-dev
 cache:
-  - pip
-  - apt
+- pip
+- apt
 install:
 - sudo apt-get install $LUA
-- make environment
+- python setup.py install
 script: python tests.py
 notifications:
   irc: "irc.freenode.org#openmining"

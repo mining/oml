@@ -1,12 +1,8 @@
 # -*- coding: utf-8 -*-
 from quik import Template
-from mining.utils import conf, __from__
+from mining.utils import __from__
 
 from .base import OMLBase
-
-
-langruntime = __from__(
-    "oml.{}.RunTime".format(conf("oml").get("language").lower()))
 
 
 def ROW(name, func):
@@ -16,7 +12,9 @@ def ROW(name, func):
         return {name: func}
 
 
-def RunTime(items, OML):
+def RunTime(language, items, OML):
+    langruntime = __from__("oml.{}.RunTime".format(language.lower()))
+
     nitems = []
     for item in items:
         nitem = item.copy()

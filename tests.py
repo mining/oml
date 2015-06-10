@@ -24,7 +24,7 @@ class InitialTest(TestCase):
         ROW('func', function() return 'abc' end)
         {dict1=@field1*@field2, dict2=123}"""
 
-        run = RunTime(self.dataset, OML)
+        run = RunTime("lua", self.dataset, OML)
         self.assertTrue(run)
         self.assertEqual(len(run), 3)
 
