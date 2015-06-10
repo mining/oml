@@ -9,7 +9,7 @@ cache:
   - apt
 install:
 - sudo apt-get install $LUA
-- python setup.py install
+- make environment
 script: python tests.py
 notifications:
   irc: "irc.freenode.org#openmining"

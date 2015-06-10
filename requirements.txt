@@ -1,3 +1,4 @@
-requests
-quik
+-e git+https://github.com/avelino/mining#egg=mining
 lupa
+quik
+requests
