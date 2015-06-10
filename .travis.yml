@@ -3,14 +3,6 @@ python:
   - "2.7"
 env:
 - LUA=libluajit-5.1-dev
-- LUA=libluajit-5.1-dev
-- LUA=libluajit-5.1-dev
-- LUA=libluajit-5.1-dev
-- LUA=libluajit-5.1-dev
-- LUA=lua5.2-dev
-- LUA=lua5.2-dev
-- LUA=lua5.2-dev
-- LUA=lua5.2-dev
 - LUA=lua5.2-dev
 cache:
   - pip
