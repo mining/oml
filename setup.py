@@ -18,10 +18,10 @@ classifiers = [
     "Topic :: Internet :: WWW/HTTP :: Dynamic Content",
     'Topic :: Software Development :: Libraries :: Python Modules']
 
-long_description = open('README.md').read()
+long_description = "Language to preprocess Olap Cubes for Open Mining"
 
 setup(name='oml',
-      version="0.1.1",
+      version="0.1.2",
       description="Open Mining Language",
       long_description=long_description,
       classifiers=classifiers,
