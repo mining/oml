@@ -3,7 +3,7 @@
 from setuptools import setup
 
 
-REQUIREMENTS = [i.strip() for i in open("requirements.txt").readlines()]
+REQUIREMENTS = ["lupa", "quik", "requests"]
 
 
 classifiers = [
