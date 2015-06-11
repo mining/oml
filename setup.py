@@ -21,7 +21,7 @@ classifiers = [
 long_description = open('README.md').read()
 
 setup(name='oml',
-      version="0.1",
+      version="0.1.1",
       description="Open Mining Language",
       long_description=long_description,
       classifiers=classifiers,
