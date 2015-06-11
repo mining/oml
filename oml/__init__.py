@@ -1,8 +1,6 @@
 # -*- coding: utf-8 -*-
 from quik import Template
 
-from .base import OMLBase
-
 
 def __from__(path):
     try:
@@ -20,8 +18,12 @@ def ROW(name, func):
         return {name: func}
 
 
-def RunTime(language, items, OML):
+def RunTime(language, items, OML, CLASS={"OML": "oml.base.OMLBase"}):
     langruntime = __from__("oml.{}.RunTime".format(language.lower()))
+
+    for k in CLASS:
+        CLASS[k] = __from__(CLASS[k])()
+    CLASS["ROW"] = ROW
 
     nitems = []
     for item in items:
@@ -30,10 +32,14 @@ def RunTime(language, items, OML):
             temp = Template(oml_line)
             render = temp.render(item)
 
-            _run = langruntime.eval(
-                """
-                function(ROW, OML) return {} end
-                """.format(render))
-            nitem.update(_run(ROW, OMLBase()).items())
+            runlang = Template(
+                "function(#for @class in @_class:@class"
+                "#if(@velocityHasNext), #end#end) "
+                "return @render end")
+
+            _run = langruntime.eval(runlang.render(
+                {"_class": [i for i in CLASS],
+                 "render": render}))
+            nitem.update(_run(*CLASS.values()).items())
         nitems.append(nitem)
     return nitems
