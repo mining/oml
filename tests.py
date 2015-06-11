@@ -28,6 +28,16 @@ class InitialTest(TestCase):
         self.assertTrue(run)
         self.assertEqual(len(run), 3)
 
+    def test_set_CLASS(self):
+
+        OML = """ROW('new_collum1', TEST.SUM({@field1, @field2}))
+        ROW('new_collum2', TEST.SUB({@field1, @field2}))
+        ROW('geo', TEST.GEO_LOCATION("@address"))"""
+
+        run = RunTime("lua", self.dataset, OML, {"TEST": "oml.base.OMLBase"})
+        self.assertTrue(run)
+        self.assertEqual(len(run), 3)
+
 
 if __name__ == '__main__':
     unittest.main()
