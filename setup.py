@@ -21,7 +21,7 @@ classifiers = [
 long_description = "Language to preprocess Olap Cubes for Open Mining"
 
 setup(name='oml',
-      version="0.1.2",
+      version="0.1.3",
       description="Open Mining Language",
       long_description=long_description,
       classifiers=classifiers,
@@ -31,6 +31,7 @@ setup(name='oml',
       url='http://openmining.io',
       download_url="https://github.com/mining/oml/tarball/master",
       license="MIT",
+      packages=['oml'],
       package_dir={'oml': 'oml'},
       install_requires=REQUIREMENTS,
       include_package_data=True,
