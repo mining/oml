@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # -*- coding:utf-8 -*-
-from setuptools import setup
+from setuptools import setup, find_packages
 
 
 REQUIREMENTS = ["lupa", "quik", "requests"]
@@ -31,7 +31,7 @@ setup(name='oml',
       url='http://openmining.io',
       download_url="https://github.com/mining/oml/tarball/master",
       license="MIT",
-      packages=['oml'],
+      packages=find_packages(),
       package_dir={'oml': 'oml'},
       install_requires=REQUIREMENTS,
       include_package_data=True,
